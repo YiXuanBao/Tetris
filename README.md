@@ -1,4 +1,4 @@
-![image](https://github.com/YiXuanBao/Tetris/assets/50281118/ddecae61-0627-4e9a-bf65-d227cc1d859a)# Tetris
+# Tetris
 俄罗斯方块，帧同步联机版
 
 使用Unity编写的帧同步俄罗斯方块，支持双人联机游玩。
