@@ -76,6 +76,8 @@ public class LoginForm : UIForm
 
     private void SetUserInfo(LoginPack pack)
     {
+        GameEntry.Data.UserName = pack.Username;
+        Utils.Log(pack.ToString());
         GameEntry.Data.SetData("UserName", pack.Username);
     }
 

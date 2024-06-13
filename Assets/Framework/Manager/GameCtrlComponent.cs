@@ -48,6 +48,7 @@ public class GameCtrlComponent : GameFrameworkComponent
     public void Ready(MainPack pack)
     {
         string userName = GameEntry.Data.GetData("UserName");
+        
         for (int i = 0; i < pack.PlayerPack.Count; i++)
         {
             if (pack.PlayerPack[i].PlayerName == userName)
@@ -56,11 +57,11 @@ public class GameCtrlComponent : GameFrameworkComponent
                 break;
             }
         }
-
+        Utils.Log($"userName: {userName}, ActorId: {ActorId}");
         frameCtrl = new FrameCtrl(this);
         var eventCom = GameEntry.GetGameFrameworkComponent<EventComponent>();
         eventCom.Subscribe(StartedEventArgs.EventId, OnStartedRequestResonse);
-
+        eventCom.Subscribe(GameOverEventArgs.EventId, OnGameOverRequestResponse);
         if (gameObj != null) 
             Destroy(gameObj);
         GameObject obj = Resources.Load<GameObject>("Game");
@@ -109,6 +110,7 @@ public class GameCtrlComponent : GameFrameworkComponent
 
         var eventCom = GameEntry.GetGameFrameworkComponent<EventComponent>();
         eventCom.Unsubscribe(StartedEventArgs.EventId, OnStartedRequestResonse);
+        
         isStart = true;
 
         //var objs = FindObjectsOfType<DiamondInfo>();
@@ -150,17 +152,19 @@ public class GameCtrlComponent : GameFrameworkComponent
 
     public void GameOver(MainPack pack)
     {
+        if (!isStart) return; 
+        Debug.Log("GameOver");
         isStart = false;
         playerList = null;
         if (gameObj != null)
             Destroy(gameObj);
         frameCtrl.Dispose();
         frameCtrl = null;
-        //var objs = FindObjectsOfType<DiamondController>().Where(obj => obj.enabled);
-        //foreach (DiamondController obj in objs)
-        //{
-        //    obj.enabled = false;
-        //}
+        var objs = FindObjectsOfType<DiamondController>().Where(obj => obj.enabled);
+        foreach (DiamondController obj in objs)
+        {
+            obj.enabled = false;
+        }
         string info;
         if (this.ActorId.ToString() == pack.Str)
         {
@@ -170,7 +174,7 @@ public class GameCtrlComponent : GameFrameworkComponent
         {
             info = "你赢了";
         }
-        GameEntry.UI.OpenUIForm(UIFormPath.MessageForm, info);
+        GameEntry.UI.OpenUIForm(UIFormPath.OverForm, info);
     }
     #endregion
 

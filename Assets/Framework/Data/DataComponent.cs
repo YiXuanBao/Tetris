@@ -2,24 +2,26 @@
 
 public class DataComponent : GameFrameworkComponent
 {
+    public string UserName;
+
     public void SetData(string key, string value)
     {
-        PlayerPrefs.SetString(key, value);
+        PlayerPrefs.SetString(UserName + key, value);
     }
 
     public void SetData(string key, int value)
     {
-        PlayerPrefs.SetInt(key, value);
+        PlayerPrefs.SetInt(UserName + key, value);
     }
 
     public void SetData(string key, float value)
     {
-        PlayerPrefs.SetFloat(key, value);
+        PlayerPrefs.SetFloat(UserName + key, value);
     }
 
     public string GetData(string key)
     {
-        return PlayerPrefs.GetString(key, string.Empty);
+        return PlayerPrefs.GetString(UserName + key, string.Empty);
     }
 
     /// <summary>
@@ -29,7 +31,7 @@ public class DataComponent : GameFrameworkComponent
     /// <returns></returns>
     public int GetIntData(string key)
     {
-        return PlayerPrefs.GetInt(key, int.MaxValue);
+        return PlayerPrefs.GetInt(UserName + key, int.MaxValue);
     }
 
     /// <summary>
@@ -39,6 +41,6 @@ public class DataComponent : GameFrameworkComponent
     /// <returns></returns>
     public float GetFloatData(string key)
     {
-        return PlayerPrefs.GetFloat(key, float.NaN);
+        return PlayerPrefs.GetFloat(UserName + key, float.NaN);
     }
 }

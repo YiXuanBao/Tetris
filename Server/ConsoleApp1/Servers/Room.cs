@@ -122,6 +122,8 @@ namespace SocketMutiplayerGameServer.Servers
         {
             pack.ReturnCode = ReturnCode.Succeed;
             Broadcast(null,pack);
+            isStart = false;
+            Console.WriteLine("游戏结束");
         }
 
         public void PlayerInput(Client client, Frame input)
@@ -198,7 +200,7 @@ namespace SocketMutiplayerGameServer.Servers
                     }
                 }
 
-                //Debug.Log($" Border input {Tick} isUpdate:{isForce} _tickSinceGameStart:{_tickSinceGameStart}");
+                //Console.WriteLine($" Border input {Tick} isUpdate:{isForce} _tickSinceGameStart:{_tickSinceGameStart}");
                 var pack = new MainPack();
                 int count = Tick < 2 ? Tick + 1 : 3;
                 var frames = new Frame[count];
@@ -265,7 +267,7 @@ namespace SocketMutiplayerGameServer.Servers
             {
                 pack.PlayerPack.Add(player);
             }
-            Console.WriteLine(pack);
+            //Console.WriteLine(pack);
             Broadcast(null, pack);
         }
 

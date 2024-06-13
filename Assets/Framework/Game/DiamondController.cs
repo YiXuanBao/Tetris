@@ -45,13 +45,11 @@ public class DiamondController : MonoBehaviour
         //{
         //    SetAxis();
         //}
-        //还原到上一个逻辑帧位置
-        transform.position = curPos;
-        
+
         rotateTime += deltaTime;
         moveTime += deltaTime;
         fallTime += deltaTime;
-
+        //Debug.LogError(Time.time);
         if (input.Up && rotateTime >= rotateSec)
         {
             Rotate();
@@ -77,22 +75,24 @@ public class DiamondController : MonoBehaviour
     public void FrameUpdate(float deltaTime)
     {
         //表现帧向逻辑帧位置插值移动
-        transform.position = Vector3.Lerp(transform.position, curPos, 0.5f);
+        //transform.position = Vector3.Lerp(transform.position, curPos, 0.5f);
     }
 
     void MoveLeft()
     {
+        //Utils.LogError($"MoveLeft");
         if (gim.ValidMove(this.transform, -Vector3.right))
         {
-            curPos -= Vector3.right;
+            transform.position -= Vector3.right;
         }
     }
 
     void MoveRight()
     {
+        //Utils.LogError($"MoveRight");
         if (gim.ValidMove(this.transform, Vector3.right))
         {
-            curPos += Vector3.right;
+            transform.position += Vector3.right;
         }
     }
 
@@ -105,15 +105,21 @@ public class DiamondController : MonoBehaviour
         }
         else
         {
-            curPos -= Vector3.up;
+            transform.position -= Vector3.up;
         }
     }
 
     void Rotate()
     {
         transform.RotateAround(transform.TransformPoint(rotatePoint), Vector3.forward, 90);
+        //Utils.LogError($"-----------------");
+        //foreach (Transform tr in transform)
+        //{
+        //    Utils.LogError($"{tr.name}_{tr.position}");
+        //}
         if (!gim.ValidMove(this.transform, Vector3.zero))
         {
+            //Utils.LogError($"Rotate Invalid");
             transform.RotateAround(transform.TransformPoint(rotatePoint), Vector3.forward, -90);
         }
     }

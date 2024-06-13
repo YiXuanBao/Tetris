@@ -5,7 +5,6 @@ using System.Net.Sockets;
 
 public class SimpleUdpClient
 {
-    private readonly int clientPort;
     private readonly string serverIp;
     private readonly int serverPort;
 
@@ -18,7 +17,6 @@ public class SimpleUdpClient
     {
         this.serverIp = GlobalConfig.ServerUdpIp;
         this.serverPort = GlobalConfig.ServerUdpPort;
-        this.clientPort = GlobalConfig.ClientUdpPort;
         packetQueue = new SyncQueue<NetPacket>();
         isConnect = false;
     }

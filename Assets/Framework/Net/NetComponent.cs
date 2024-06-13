@@ -92,7 +92,7 @@ public class NetComponent : GameFrameworkComponent
         if (netPacket.packetType == PacketType.TcpPacket || netPacket.packetType == PacketType.UdpPacket)
         {
             var pack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(netPacket.BodyBytes, 0, netPacket.BodyBytes.Length);
-            Utils.Log("收到消息 " + m_NetEvents[pack.ActionCode] + pack.ToString());
+            //Utils.Log("收到消息 " + m_NetEvents[pack.ActionCode] + pack.ToString());
             var eventArgs = (BaseEventArgs)Activator.CreateInstance(m_NetEvents[pack.ActionCode], pack);
             eventComponent.Fire(this, eventArgs);
         }

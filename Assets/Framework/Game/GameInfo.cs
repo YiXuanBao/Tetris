@@ -90,7 +90,7 @@ public class GameInfo : MonoBehaviour
 
     void Lose()
     {
-        //gameController.RequestGameOver(this);
+        GameEntry.GetGameFrameworkComponent<GameCtrlComponent>().RequestGameOver(this);
     }
 
     public void DecreaseBottom(int times = 1)

@@ -52,7 +52,7 @@ namespace SocketMutiplayerGameServer.Servers
             {
                 int len = udpScoket.ReceiveFrom(buffer, ref remoteEP);
                 MainPack pack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(buffer, 0, len);
-                Console.WriteLine("\nUDP接收" + pack.ToString());
+                //Console.WriteLine("\nUDP接收" + pack.ToString());
                 HandleRequest(pack);
             }
         }
@@ -70,7 +70,7 @@ namespace SocketMutiplayerGameServer.Servers
 
         public void SendTo(MainPack pack, EndPoint remoteEP)
         {
-            Console.WriteLine("\nUDP发送"+pack.ToString());
+            //Console.WriteLine("\nUDP发送"+pack.ToString());
             byte[] buffer = Message.PackDataUDP(pack);
             udpScoket.SendTo(buffer,buffer.Length,SocketFlags.None,remoteEP);
         }

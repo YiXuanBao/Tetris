@@ -1,6 +1,7 @@
 ﻿public static class UIFormPath
 {
     public static string MessageForm = "UIForm/MessageForm";
+    public static string OverForm = "UIForm/OverForm";
     public static string StartForm = "UIForm/StartForm";
     public static string LoginForm = "UIForm/LoginForm";
     public static string LogonForm = "UIForm/LogonForm";

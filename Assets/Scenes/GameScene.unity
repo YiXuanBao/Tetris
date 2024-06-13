@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388e924dea4a42d41a1038706bc00da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FrameRate: 30
+  m_FrameRate: 60
   m_GameSpeed: 1
   m_RunInBackground: 1
   m_NeverSleep: 1
@@ -646,6 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e4d0948a5aa68418ff278c1f69ab79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UserName: 
 --- !u!1 &1239918906
 GameObject:
   m_ObjectHideFlags: 0
